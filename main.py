@@ -1,11 +1,22 @@
-import os
-import sys
+#!/usr/bin/env python3
+"""make.fun entry: One Sentence for a Traveler from 1800.
 
-SENTENCE = "It is a road of wires joining town to town across the earth, where letters, pictures, and voices fly faster than any horse, so a man in London may speak with a friend in Canton while his tea cools."
+Writes one sentence explaining the modern internet to a time traveler
+from 1800, using only words that existed in their time.
+Pure standard library; no third-party packages, no network.
+"""
+
+import os
+
+PART_A = "Picture a road joining every post office, press, and library on earth, "
+PART_B = "carrying letters that reach their reader before the ink is dry."
+SENTENCE = PART_A + PART_B
+assert SENTENCE == "Picture a road joining every post office, press, and library on earth, carrying letters that reach their reader before the ink is dry."
+assert 1 <= len(SENTENCE) <= 200
 
 
 def main():
-    out_dir = sys.argv[1] if len(sys.argv) > 1 else os.environ.get("OUTPUT_DIR", "/output")
+    out_dir = os.environ.get("OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     with open(os.path.join(out_dir, "entry.txt"), "w", encoding="utf-8") as handle:
         handle.write(SENTENCE)
